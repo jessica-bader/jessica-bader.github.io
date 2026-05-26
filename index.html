@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Page</title>
+
+  <link rel="shortcut icon" href="imgs/favicon/favicon.ico" type="image/x-icon">
+
+  <link type="text/css" rel="stylesheet" href="css/main.css">
+  <link type="text/css" rel="stylesheet" href="css/fira_font.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Dosis|Raleway' rel='stylesheet' type='text/css'>
+
+  <style type="text/css">
+    :root {
+      --bg-base: #f2efe9;
+      --bg-depth: #f2efe9;
+      --card-surface: #f5f1ed;
+      --card-border: #e4d9d2;
+      --highlight-surface: #f2e6df;
+      --highlight-border: #ddbdac;
+      --highlight-accent: #b56b4d;
+      --topic-ink: #6b4c3e;
+      --topic-rule: rgba(107, 76, 62, 0.28);
+    }
+
+    html, body {
+      background-color: var(--bg-base) !important;
+    }
+
+    body {
+      min-height: 100vh;
+      background-image:
+        radial-gradient(1200px 700px at 50% -220px, rgba(255, 255, 255, 0.52), transparent 60%),
+        linear-gradient(180deg, var(--bg-base) 0%, var(--bg-depth) 100%);
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 10px;
+      background: transparent !important;
+    }
+
+    h1, .site-title {
+      font-family: 'Raleway', sans-serif;
+      text-align: center;
+      font-size: 32px;
+      padding-top: 1em;
+    }
+
+    .profile-flex {
+      display: flex;
+      gap: 30px;
+      margin-top: 1em;
+    }
+
+    .profile-img img {
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+      background: #ddd;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+    }
+
+    .news, .pub-section {
+      margin-top: 30px;
+    }
+
+    .pub-entry {
+      display: flex;
+      gap: 24px;
+      padding: 20px;
+      border-radius: 8px;
+      background: var(--card-surface);
+      margin-bottom: 20px;
+    }
+
+    .pub-img img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      background: #ddd;
+    }
+
+    .pub-topic-header {
+      margin-top: 40px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--topic-ink);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <h1>Your Name</h1>
+
+    <!-- Profile Section -->
+    <div class="profile-flex">
+      <div class="profile-info">
+        <p><!-- Bio goes here --></p>
+        <p><!-- More bio text --></p>
+
+        <div class="social-links">
+          <a href="#">Email</a>
+          <a href="#">Scholar</a>
+          <a href="#">Twitter</a>
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="profile-img">
+        <img src="" alt="Profile image placeholder">
+      </div>
+    </div>
+
+    <!-- News Section -->
+    <section class="news">
+      <h2>News</h2>
+      <ul>
+        <!-- News items -->
+      </ul>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="pub-section">
+      <h2>Selected Publications</h2>
+
+      <h3 class="pub-topic-header">Topic Section</h3>
+
+      <div class="pub-list">
+
+        <div class="pub-entry">
+          <div class="pub-img">
+            <img src="" alt="Publication image placeholder">
+          </div>
+          <div class="pub-info">
+            <h3><!-- Paper title --></h3>
+            <div class="pub-meta">
+              <!-- Authors and venue -->
+            </div>
+            <a href="#">paper</a>
+            <a href="#">code</a>
+            <p><!-- Description --></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
