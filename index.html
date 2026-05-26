@@ -15,8 +15,9 @@
 
   <style type="text/css">
     :root {
-      --bg-base: #f2efe9;
-      --bg-depth: #f2efe9;
+      --bg-base: #F3E6E6;
+      /* --bg-depth: #f2efe9; */
+      --bg-depth: #FAF2F2;
       --card-surface: #f5f1ed;
       --card-border: #e4d9d2;
       --highlight-surface: #f2e6df;
@@ -26,7 +27,8 @@
       --topic-rule: rgba(107, 76, 62, 0.28);
     }
 
-    html, body {
+    html,
+    body {
       background-color: var(--bg-base) !important;
     }
 
@@ -38,65 +40,285 @@
     }
 
     .container {
-      max-width: 880px;
-      margin: 0 auto;
-      padding: 0 10px;
       background: transparent !important;
     }
 
-    h1, .site-title {
+    /* Site title - matching agarwl's styling */
+    h1,
+    .site-title {
       font-family: 'Raleway', sans-serif;
-      text-align: center;
       font-size: 32px;
+      letter-spacing: -1px;
+      text-align: center;
       padding-top: 1em;
+      margin-bottom: 0.5em;
     }
 
+    @media screen and (min-width: 550px) {
+
+      h1,
+      .site-title {
+        font-size: 46px;
+      }
+    }
+
+    /* Container - slightly wider */
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+    /* Profile layout - picture left, bio right */
     .profile-flex {
       display: flex;
+      flex-direction: row;
       gap: 30px;
+      align-items: flex-start;
       margin-top: 1em;
     }
 
-    .profile-img img {
-      width: 200px;
-      height: auto;
-      border-radius: 8px;
-      background: #ddd;
+    .profile-img {
+      flex: 0 0 200px;
+      max-width: 200px;
     }
 
+    .profile-img img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 8px;
+    }
+
+    .profile-info {
+      flex: 1;
+    }
+
+    @media (max-width: 600px) {
+      .profile-flex {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .profile-img {
+        flex: 0 0 auto;
+        max-width: 180px;
+      }
+    }
+
+    /* Social links */
     .social-links {
       display: flex;
       flex-wrap: wrap;
       gap: 18px;
       justify-content: center;
+      margin-bottom: 1em;
     }
 
-    .news, .pub-section {
-      margin-top: 30px;
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
     }
 
+    .social-links a i {
+      margin-right: 0.4em;
+      font-size: 1.5em;
+    }
+
+    /* News section - simple bullets */
+    .news {
+      padding: 15px 0;
+      margin-bottom: 10px;
+    }
+
+    .news ul {
+      margin-left: 20px;
+      padding-left: 0;
+    }
+
+    .news li {
+      margin-bottom: 0;
+    }
+
+    /* Publication entry layout - original narrower layout */
     .pub-entry {
       display: flex;
+      flex-direction: row;
       gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 32px;
       padding: 20px;
       border-radius: 8px;
+      flex-wrap: wrap;
       background: var(--card-surface);
-      margin-bottom: 20px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pub-entry:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .pub-entry.highlight:hover {
+      box-shadow: inset 4px 0 0 var(--highlight-accent), 0 8px 25px rgba(181, 107, 77, 0.28);
+    }
+
+    .pub-img {
+      flex: 0 0 290px;
+      max-width: 290px;
+      min-width: 200px;
     }
 
     .pub-img img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      background: #ddd;
+      width: 260px;
+      height: 260px;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
     }
 
+    .pub-entry:hover .pub-img img {
+      transform: scale(1.03);
+    }
+
+    .pub-info {
+      flex: 1 1 200px;
+      min-width: 180px;
+    }
+
+    /* Paper title */
+    .pub-info h3 {
+      margin-bottom: 0.5em;
+      margin-top: 0;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    /* Paper metadata */
+    .pub-meta {
+      margin-bottom: 0.5em;
+      margin-top: 0;
+    }
+
+    /* Paper links */
+    .pub-info>a {
+      margin-right: 1em;
+      margin-bottom: 0.3em;
+    }
+
+    /* Space between icon and text */
+    .pub-info>a i {
+      margin-right: 0.3em;
+    }
+
+    /* Highlighted papers */
+    .pub-entry.highlight {
+      background: var(--highlight-surface);
+      border: 1px solid var(--highlight-border);
+      box-shadow: inset 4px 0 0 var(--highlight-accent), 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Section headers - prominent styling */
     .pub-topic-header {
-      margin-top: 40px;
+      font-family: 'Dosis', 'Raleway', sans-serif;
+      font-size: 1.05rem;
       font-weight: 600;
       text-transform: uppercase;
       color: var(--topic-ink);
+      margin-top: 40px;
+      margin-bottom: 18px;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
+
+    .pub-topic-header::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--topic-rule), transparent);
+    }
+
+    /* Divider */
+    .divider {
+      border-top: 1px solid #e8e8e8;
+      margin: 20px 0;
+    }
+
+    /* Mobile responsive adjustments */
+    @media (max-width: 600px) {
+
+      /* Profile: Image on top, then bio */
+      .profile-flex {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .profile-info {
+        text-align: center;
+      }
+
+      .profile-img {
+        flex: 0 0 auto;
+        max-width: 180px;
+        margin-bottom: 5px;
+      }
+
+      /* Publications: Stack vertically */
+      .pub-entry {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+        margin-bottom: 25px;
+      }
+
+      .pub-img,
+      .pub-info {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 15px;
+      }
+
+      .pub-img img {
+        /* Allow image to scale down */
+        max-width: 100%;
+        height: auto;
+      }
+
+      .pub-info {
+        text-align: center;
+        /* Center align text on mobile for cleaner look */
+      }
+
+      .pub-info>a {
+        display: inline-block;
+        margin-bottom: 8px;
+      }
+
+      /* Adjust header sizes */
+      h1,
+      .site-title {
+        font-size: 28px;
+        padding-top: 0.5em;
+      }
+
+      .pub-topic-header {
+        margin-top: 25px;
+        font-size: 1rem;
+        text-align: center;
+        display: block;
+      }
+
+      .pub-topic-header::after {
+        display: none;
+      }
+    }
+
   </style>
 </head>
 
@@ -110,57 +332,128 @@
     <!-- Profile Section -->
     <div class="profile-flex">
       <div class="profile-info">
-        <p><!-- Bio goes here --></p>
-        <p><!-- More bio text --></p>
+        <p>I am a Machine Learning researcher focused on controlling text-to-image models. My work has included controlling color and spatial composition, as well as generating out-of-distribution images in flow-matching models. Over the past few years, I’ve worked at TUM and Helmholtz Munich, and I’m also a Junior Member of the Munich Center for Machine Learning. </p>
+        <p>I previously earned a Master’s degree in Machine Learning from the University of Tübingen and a Bachelor’s degree in Computer Engineering from Iowa State University.</p>
 
         <div class="social-links">
-          <a href="#">Email</a>
-          <a href="#">Scholar</a>
-          <a href="#">Twitter</a>
-          <a href="#">GitHub</a>
-          <a href="#">LinkedIn</a>
-        </div>
+            <a href="mailto:mailto:jessica.bader@tum.de"><i class="fa-solid fa-envelope"></i>Email</a>
+            <a href="https://scholar.google.com/citations?user=WHW3A7AAAAAJ&hl=en&oi=ao"><i
+                class="fa-solid fa-graduation-cap"></i>Scholar</a>
+            <a href="https://github.com/jessica-bader"><i class="fa-brands fa-github"></i>GitHub</a>
+            <a href="https://www.linkedin.com/in/jess-bader/"><i
+                class="fa-brands fa-linkedin"></i>LinkedIn</a>
+          </div>
       </div>
 
       <div class="profile-img">
-        <img src="" alt="Profile image placeholder">
+        <img src="imgs/jessica-bader.jpg" alt="Profile image">
       </div>
     </div>
 
     <!-- News Section -->
-    <section class="news">
+    <!-- <section class="news">
       <h2>News</h2>
       <ul>
-        <!-- News items -->
       </ul>
-    </section>
+    </section> -->
 
     <!-- Publications Section -->
     <section class="pub-section">
-      <h2>Selected Publications</h2>
+        <h2>Selected Publications</h2>
 
-      <h3 class="pub-topic-header">Topic Section</h3>
-
-      <div class="pub-list">
-
-        <div class="pub-entry">
-          <div class="pub-img">
-            <img src="" alt="Publication image placeholder">
-          </div>
-          <div class="pub-info">
-            <h3><!-- Paper title --></h3>
-            <div class="pub-meta">
-              <!-- Authors and venue -->
+        <div class="pub-list">
+          <div class="pub-entry">
+            <div class="pub-img">
+              <img src='imgs/LCS.png' alt='LCS publication image' height="100%"
+                width="auto">
             </div>
-            <a href="#">paper</a>
-            <a href="#">code</a>
-            <p><!-- Description --></p>
+            <div class="pub-info">
+              <h3>The Latent Color Subspace: Emergent Order in High-Dimensional Chaos</h3>
+              <div class="pub-meta">
+                <a href="https://mateuszpach.github.io/">Mateusz Pach*</a>, <strong>Jessica Bader*</strong>, <a
+                  href="https://qbouniot.github.io/">Quentin Bouniot</a>, <a
+                  href="https://serge.belongie.com/">Serge Belongie</a>, <a
+                  href="https://www.eml-munich.de/people/zeynep-akata">Zeynep Akata</a><br>
+                <em>ICML 2026</em>.
+              </div>
+              <a href="https://arxiv.org/abs/2603.12261"><i class="fa-solid fa-file-lines"></i>paper</a>
+              <a href="https://github.com/ExplainableML/LCS"><i class="fa-solid fa-globe"></i>Project
+                Page</a>
+              <p>We investigate how color is represented in the latent space of diffusion models such as FLUX.
+                Surprisingly, we find that color is encoded in a highly interpretable subspace that closely resembles the HSL color model. 
+                We further verify that this structure is not merely correlational but causal: manipulating this subspace enables precise, targeted control over the color of objects in the generated images.
+              </p>
+            </div>
           </div>
-        </div>
-
-      </div>
-    </section>
-
+          <div class="pub-entry">
+            <div class="pub-img">
+              <img src='imgs/Stitch.png' alt='Stitch publication image' height="100%"
+                width="auto">
+            </div>
+            <div class="pub-info">
+              <h3>Stitch: Training-Free Position Control in Multimodal Diffusion Transformers</h3>
+              <div class="pub-meta">
+                <strong>Jessica Bader*</strong>, <a href="https://mateuszpach.github.io/">Mateusz Pach*</a>, <a
+                  href="https://mabravo641.github.io/">María Bravo</a>, <a
+                  href="https://serge.belongie.com/">Serge Belongie</a>, <a
+                  href="https://www.eml-munich.de/people/zeynep-akata">Zeynep Akata</a><br>
+                <em>Under review</em>.
+              </div>
+              <a href="https://arxiv.org/abs/2509.26644"><i class="fa-solid fa-file-lines"></i>paper</a>
+              <a href="https://github.com/ExplainableML/Stitch"><i class="fa-solid fa-globe"></i>Project
+                Page</a>
+              <p>Spatial positioning has long been a challenging aspect for text-to-image models, though recent improvements on benchmarks such as GenEval’s positioning task suggest that this problem may be nearing resolution.
+                We find that this is not the case. When evaluated on more challenging positional prompts involving multiple objects or more complex relationships, even state-of-the-art models fail to generalize reliably.
+                To support the next generation of text-to-image models, we introduce a new benchmark—PosEval—comprising five positional tasks designed to extend and better evaluate spatial understanding capabilities.
+                Building on this, we also propose Stitch, a layout control method designed to reduce artifacts in transformer-based models.
+              </p>
+            </div>
+          </div>
+          <div class="pub-entry">
+            <div class="pub-img">
+              <img src='imgs/sub.png' alt='SUB publication image' height="100%"
+                width="auto">
+            </div>
+            <div class="pub-info">
+              <h3>SUB: Benchmarking CBM Generalization via Synthetic Attribute Substitutions</h3>
+              <div class="pub-meta">
+                <strong>Jessica Bader</strong>, <a href="https://www.eml-munich.de/people/leander-girrbach">Leander Girrbach</a>, <a
+                  href="https://www.eml-munich.de/people/stephan-alaniz#Profile">Stephan Alaniz</a>, <a
+                  href="https://www.eml-munich.de/people/zeynep-akata">Zeynep Akata</a><br>
+                <em>ICCV 2025</em>.
+              </div>
+              <a href="https://arxiv.org/abs/2507.23784"><i class="fa-solid fa-file-lines"></i>paper</a>
+              <a href="https://github.com/ExplainableML/sub"><i class="fa-solid fa-globe"></i>Project
+                Page</a>
+              <p>In concept-based explainability methods such as Concept Bottleneck Models, the reliability of the explanations depends critically on the assumption that the model accurately detects the intended concepts.
+                However, this can be fundamentally difficult to test: how can we tell whether the model is truly detecting the blue crown on the blue jay, rather than relying on some other spurious cue, if no such bird exists—a blue jay with a differently colored crown—to serve as a comparison?
+                We address this by generating synthetic images of existing classes in which a single concept is selectively modified, allowing us to evaluate concept-based models under controlled conditions. We find that these models do not behave as intended: they often hallucinate the original attribute, suggesting reliance on spurious features rather than genuinely interpretable representations.
+              </p>
+            </div>
+          </div>
+          <div class="pub-entry">
+            <div class="pub-img">
+              <img src='imgs/datadream.png' alt='DataDream publication image' height="100%"
+                width="auto">
+            </div>
+            <div class="pub-info">
+              <h3>DataDream: Few-shot Guided Dataset Generation</h3>
+              <div class="pub-meta">
+                <a href="https://jaemyung-kim.github.io/">Jae Myung Kim*</a>, <strong>Jessica Bader*</strong>,  <a
+                  href="https://www.eml-munich.de/people/stephan-alaniz#Profile">Stephan Alaniz</a>, <a
+                  href="https://cordeliaschmid.github.io/">Cordelia Schmid</a>, <a
+                  href="https://www.eml-munich.de/people/zeynep-akata">Zeynep Akata</a><br>
+                <em>ECCV 2024</em>.
+              </div>
+              <a href="https://arxiv.org/abs/2407.10910"><i class="fa-solid fa-file-lines"></i>paper</a>
+              <a href="https://github.com/ExplainableML/DataDream"><i class="fa-solid fa-globe"></i>Project
+                Page</a>
+              <p>As image generation models continue to improve in quality, it becomes increasingly feasible to reduce data curation costs by using them to generate synthetic training data for classifiers.
+                However, this approach can be ineffective when the generation model lacks a sufficient understanding of the target classes.
+                We find that when few-shot samples are available, using them to fine-tune the generative model before generating training images is highly effective for improving its understanding of the base classes, significantly boosting the accuracy of the final trained classifier.
+              </p>
+            </div>
+          </div>
   </div>
 
 </body>
